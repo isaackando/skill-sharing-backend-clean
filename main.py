@@ -42,3 +42,7 @@ def get_skills(db: Session = Depends(get_db)):
 @app.get("/users/")
 def get_users(db: Session = Depends(get_db)):
     return crud.get_users(db)
+    
+@app.get("/skills/have/")
+def get_skills_have(db: Session = Depends(get_db)):
+    return db.query(models.UserSkillHave).all()
