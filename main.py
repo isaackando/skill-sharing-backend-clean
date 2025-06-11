@@ -66,3 +66,17 @@ def get_user_skills_have(user_id: int, db: Session = Depends(get_db)):
 @app.get("/skills/want/{user_id}")
 def get_user_skills_want(user_id: int, db: Session = Depends(get_db)):
     return db.query(models.UserSkillWant).filter(models.UserSkillWant.user_id == user_id).all()
+
+from fastapi.middleware.cors import CORSMiddleware
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or specify your frontend domain for security
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+
+@app.get("/health")
+def health_check():
+    return {"status": "OK"}
+
