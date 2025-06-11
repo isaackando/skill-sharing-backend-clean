@@ -58,3 +58,11 @@ def get_user_skills_have(user_id: int, db: Session = Depends(get_db)):
 @app.get("/skills/want/{user_id}")
 def get_user_skills_want(user_id: int, db: Session = Depends(get_db)):
     return db.query(models.UserSkillWant).filter(models.UserSkillWant.user_id == user_id).all()
+    
+@app.get("/skills/have/{user_id}")
+def get_user_skills_have(user_id: int, db: Session = Depends(get_db)):
+    return db.query(models.UserSkillHave).filter(models.UserSkillHave.user_id == user_id).all()
+
+@app.get("/skills/want/{user_id}")
+def get_user_skills_want(user_id: int, db: Session = Depends(get_db)):
+    return db.query(models.UserSkillWant).filter(models.UserSkillWant.user_id == user_id).all()
