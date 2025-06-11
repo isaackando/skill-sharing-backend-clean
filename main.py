@@ -30,9 +30,12 @@ def create_skill(skill: schemas.SkillBase, db: Session = Depends(get_db)):
 @app.post("/skills/have/")
 def add_skill_have(skill_data: schemas.SkillAssociation, db: Session = Depends(get_db)):
     return crud.add_user_skill_have(db=db, data=skill_data)
-
+    
 @app.post("/skills/want/")
 def add_skill_want(skill_data: schemas.SkillAssociation, db: Session = Depends(get_db)):
-    return crud.add_user_skill_want(db=db, data=skill_data)@app.get("/skills/")
-    def get_skills(db: Session = Depends(get_db)):
-        return db.query(models.Skill).all()
+    return crud.add_user_skill_want(db=db, data=skill_data)
+
+@app.get("/skills/")
+def get_skills(db: Session = Depends(get_db)):
+    return db.query(models.Skill).all()
+
