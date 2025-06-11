@@ -33,4 +33,6 @@ def add_skill_have(skill_data: schemas.SkillAssociation, db: Session = Depends(g
 
 @app.post("/skills/want/")
 def add_skill_want(skill_data: schemas.SkillAssociation, db: Session = Depends(get_db)):
-    return crud.add_user_skill_want(db=db, data=skill_data)
+    return crud.add_user_skill_want(db=db, data=skill_data)@app.get("/skills/")
+    def get_skills(db: Session = Depends(get_db)):
+        return db.query(models.Skill).all()
