@@ -46,3 +46,7 @@ def get_users(db: Session = Depends(get_db)):
 @app.get("/skills/have/")
 def get_skills_have(db: Session = Depends(get_db)):
     return db.query(models.UserSkillHave).all()
+    
+@app.get("/skills/want/")
+def get_skills_want(db: Session = Depends(get_db)):
+    return db.query(models.UserSkillWant).all()
