@@ -4,19 +4,25 @@ from sqlalchemy.orm import Session
 import models, schemas, crud
 from database import engine, get_db
 
+# Create all database tables
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# Allow frontend to talk to backend
+# ====================
+# Middleware
+# ====================
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Change this to your frontend domain in production
+    allow_origins=["*"],  # Replace with frontend domain in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# ====================
+# Root
+# ====================
 @app.get("/")
 def home():
     return {"message": "Skill Sharing Platform is online!"}
@@ -76,4 +82,5 @@ def get_user_skills_want(user_id: int, db: Session = Depends(get_db)):
 @app.get("/health")
 def health_check():
     return {"status": "OK"}
+
 

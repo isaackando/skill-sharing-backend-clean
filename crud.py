@@ -26,6 +26,7 @@ def add_user_skill_want(db: Session, data: schemas.SkillAssociation):
     db.add(entry)
     db.commit()
     return {"status": "added to skills_want"}
-    
+
 def get_users(db: Session):
     return db.query(models.User).all()
+
