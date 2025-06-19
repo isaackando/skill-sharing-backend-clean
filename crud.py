@@ -29,4 +29,3 @@ def add_user_skill_want(db: Session, data: schemas.SkillAssociation):
 
 def get_users(db: Session):
     return db.query(models.User).all()
-
